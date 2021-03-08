@@ -13,7 +13,33 @@
 </head>
 
 <body>
-	
+
+<div id="wrap1">
+	<style type="text/css">
+.content{background-color: #F7F9FB}
+
+
+
+
+
+
+
+	</style>
+
+
+<?php
+  include SITE_ROOT.'templates/head.php';
+?>
+
+
+<div class="content">
+	s
+</div>
+
+
+
+</div>
+
 </body>
 
 </html>
