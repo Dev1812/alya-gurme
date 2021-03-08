@@ -11,12 +11,20 @@ a{text-decoration: none;color: #607d8b}
 <div class="head">
   <div class="head-wrap">
   	<div class="head-left_section float_left">
-  	  <a href="/" class="head-link">
-      <img src="images/icons/favicon.ico" class="head-logo">
-  	  <span>Аля Гурме</span>
-  	  </a>
+      <div>
+        <a href="/" class="head-link">
+          <img src="images/icons/favicon.ico" class="head-logo">
+          <span>Аля Гурме</span>
+        </a>
+      </div>
   	</div>
-  	
+    
+
+      <div class="head-left_section" style="top:17px;position:relative;">
+       <input type="text" name="">
+      </div>
+
+
   	<div class="head-right_section float_right">
   	  <a href="/" class="head-link">Войти</a>
   	  <a href="/" class="head-link">Регистрация</a>
