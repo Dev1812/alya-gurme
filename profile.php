@@ -18,6 +18,127 @@ ini_set('display_startup_errors', 1);
 <?php
   include SITE_ROOT.'template/header.php';
 ?>
+
+<body>
+
+
+<?php
+
+
+  include SITE_ROOT.'template/head.php';
+?>
+
+<div class="content">
+
+<div class="wrap1">
+
+<div>
+  
+
+
+
+
+<?php
+
+function getAllFood() {
+  include SITE_ROOT.'lib/user.php';
+
+
+
+
+
+  $link = connectDatabase();
+
+$category = !empty($_GET['category_id']) ? $_GET['category_id'] : '';
+
+$arr = array();
+
+//var_dump($category);
+
+
+$sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE `owner_id` = :owner_id ORDER BY `id` DESC";
+
+
+  $is_email_exist = $link->prepare($sql);
+  $is_email_exist->execute(array(':owner_id' => $_GET['category_id']));
+
+
+
+
+
+//var_dump($is_email_exist);
+      while($row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC)) {
+      /*  if(User::isAdmin()) {
+          $row[] = '<div>Удалить статью</div>'; 
+        }*/
+/*
+
+        $row1['is_following'] = $this->checkFollowing($row1['to_id']);
+        $row1['user_initials'] = $this->user->getInitials($row1['to_id']);*/
+
+//var_dump($row1['to_id']);
+$row1['owner_info'] = getUserInfo($row1['owner_id']);
+        $arr[] = $row1;
+      }
+
+
+  $is_email_exist2 = $link->prepare("SELECT COUNT(`id`) FROM `food` WHERE `owner_id` = :food_id");
+  $is_email_exist2->execute(array(':food_id' => $_GET['category_id']));
+
+
+  
+  return array('test'=>$arr, 'count'=>$is_email_exist2->fetch(PDO::FETCH_ASSOC));
+
+
+
+
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+<?php
+$food = getAllFood();
+//var_dump($food)
+
+///image/download.png
+$photo = !empty($_SESSION['photo_path']) ? $_SESSION['photo_path'] : 'image/Pmz7l.png';
+
+//var_dump($food);
+
+$user_info = getUserInfo($_GET['category_id']);
+
+$user_initials = $user_info['first_name'].' '.$user_info['last_name'];
+?>
+  
+  <div style="float: left;"><img src="<?php echo $photo;//var_dump($_SESSION);/* $_SESSION[''];*/?>" style="width:140px;"></div>
+
+  <div style="margin-left:170px;margin-top:7px">
+    <span style="font-weight: bold;"><?php echo $user_initials;?></span>
+
+  <div style="margin-top:14px;"><?php echo $food['count']['COUNT(`id`)'];?> записей</div>
+  </div>
+
+
+
+</div>
+
+
+<div class="clear"></div>
+
+
+
+
+<div style="border-bottom:1px solid #DDD;margin-bottom:7px;padding-bottom:7px;">
+    
 <style type="text/css">
   
 
@@ -35,38 +156,16 @@ ini_set('display_startup_errors', 1);
 </style>
 
 
-<body>
+
+
+
+
+
+
 
 
 <?php
-
-
-  include SITE_ROOT.'template/head.php';
-?>
-
-<div class="content">
-
-<div class="wrap1">
-	
-  <script type="text/javascript">
-    
-function deleteposrt() {
-console.log('test');
-
-}
-  </script>
-
-<?php
-  include SITE_ROOT.'lib/user.php';
-  include SITE_ROOT.'lib/index_page.php';
-  
-  $food = getAllFood();
-  if(empty($food)) {
-    echo '<div style="text-align:center;padding:47px 0;color:#808080">Не найдено ни отдной записи</div>';
-  }
-?>
-<?php
-  foreach($food as $v) {
+  foreach($food['test'] as $v) {
     $photo = !empty($v['photo_path']) ? $v['photo_path'] : '/image/download.png';
     $user_initials = $v['owner_info']['first_name'].' '.$v['owner_info']['last_name'];
 ?>
@@ -89,11 +188,11 @@ if($v['owner_id'] == $user_id || $user_type == 'admin') {
 
   <a href="/food.php?food_id=<?php echo $v['id'];?>" target="_blank">
     <div class="food-wrap">
-	    <div><img class="food-photo__img" src="<?php echo $photo;?>"></div>
-	    <div class="food-title"><?php echo $v['title'];?></div>
-	    <div class="food-description"><?php echo 
+      <div><img class="food-photo__img" src="<?php echo $photo;?>"></div>
+      <div class="food-title"><?php echo $v['title'];?></div>
+      <div class="food-description"><?php echo 
 mb_substr(strip_tags($v['description']), 0, 200, 'UTF-8');;?></div>
-	    <div class="food-owner">
+      <div class="food-owner">
         <span class="food-owner__text"><?php echo $user_initials;?></span>
       </div>
     </div>
@@ -109,24 +208,21 @@ if(!empty($_GET['photo_id'])) {
 }*/
 ?>
 
-<div class="clear"></div>
 
 </div>
-</div>
+
+
+
+  </div>
+<div class="clear"></div>
+
+
 
 <?php
   include SITE_ROOT.'template/footer.php';
 ?>
 
-<div class="pop_box-background_layer" id="pop_box-background_layer" style="position:fixed;top:0;left:0;right:0;bottom:0;background-color:#808080;opacity:0.50;/* display:none; */display: none;"></div>
-
-
-
-
-
-
-
-
+</div>
 
 
 <script type="text/javascript">
@@ -153,7 +249,7 @@ document.getElementById('food_'+dump).style.display='none';
   var ajax = new XMLHttpRequest();
 
     
-  ajax.open("GET", "/testt.php?act=delete_photo&photo_id="+dump, true);
+  ajax.open("GET", "testt.php?act=delete_photo&photo_id="+dump, true);
   ajax.send();
 
 ajax.addEventListener("readystatechange", function() {
@@ -180,41 +276,6 @@ ajax.addEventListener("readystatechange", function() {
 
 }
 </script>
-
-<!-----
-<div id="pop_box" style="position:fixed;top:0;left:0;right:0;bottom:0;/* display:none; */display: none;">
-    
-  <div class="pop_box-wrap" id="pop_box-wrap" style="width:340px;margin:74px auto;background-color:#FFF;box-shadow:0 0 32px #888">
-    
-    <div class="pop_box-head" style="padding:14px 17px 0;font-weight:bold;">
-    <div class="pop_box-head__close_wrap" style="float: right;cursor: pointer;" onclick="PopUpBox.hide();"><img src="/image/icon/close (2).png" style="width:17px;"></div>
-    <div class="pop_box-head__title" id="pop_box_tile">Удаление фото </div> 
-
-
-   </div>
-
-    <div class="pop_box-body" style="padding:14px 17px;" id="pop_up_box">
-     <div style="margin-bottom:17px">Вы уверены, что хотите удалить фото?</div> 
-<button style="
-    width: auto;
-    padding: 7px 14px;
-    border: 0;
-    background-color: #FFF;
-    text-transform: uppercase;
-    font-weight: bold;color:green" onClick="deletemon();">Да</button>
-<button class="buttoыn" style="width:auto;padding:7px 14px;
-    width: auto;
-    padding: 7px 14px;
-    border: 0;
-    background-color: #FFF;
-    text-transform: uppercase;
-    font-weight: bold;color:green" onClick="no();">Нет</button>
-    </div>
-
-  </div>
--->
-
-  </div>
 
 </body>
 </html>

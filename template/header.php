@@ -3,9 +3,9 @@
     <link rel="shortcut icon" href="/image/icon/favicon.ico?2" type="image/x-icon">
 
     <meta name="skype_toolbar" content="skype_toolbar_parser_compatible">
-    <meta name="title" content="">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="title" content="<?php echo $page_title; ?>">
+    <meta name="description" content="<?php echo $page_description; ?>">
+    <meta name="keywords" content="<?php echo $page_keywords; ?>">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000">
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
@@ -18,7 +18,7 @@
 
     <meta property="og:title" content="<?php echo TITLE; ?>>">
     <meta property="og:image" content="/image/icon/favicon.ico?2">
-    <meta property="og:description" content="">
+    <meta property="og:description" content="<?php echo $page_description; ?>">
 
     <meta name="viewport" content="width=device-width, user-scalable=yes">
 
