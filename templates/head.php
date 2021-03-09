@@ -51,6 +51,8 @@ border-radius:3px;
        <input type="text" name="q" class="text_field" placeholder="Поиск">
       </div>
 
+      
+
       <div style="width:143px;margin:0 auto;">
       	
       	<a href="//www.digitalwind.ru" target="_blank">
