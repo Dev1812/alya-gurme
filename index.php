@@ -22,7 +22,12 @@
 
 
 
-
+.footer{    text-align: center;
+    padding: 25px 0 24px;
+    border-top: 1px solid #DDDFE1;
+    background-color: #FFF;
+    line-height: 34px;
+}
 
 	</style>
 
@@ -33,9 +38,12 @@
 
 
 <div class="content">
-	s
+	ЕУЫЕ
 </div>
 
+<?php
+  include SITE_ROOT.'templates/footer.php';
+?>
 
 
 </div>
