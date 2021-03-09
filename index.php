@@ -2,6 +2,9 @@
   define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
   define('TITLE', 'Главная');
   include SITE_ROOT.'libs/top_vars.php';
+  include SITE_ROOT.'libs/database.php';
+  include SITE_ROOT.'libs/user.php';
+  include SITE_ROOT.'libs/index.php';
 ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -13,8 +16,8 @@
 </head>
 
 <body>
-
-<div id="wrap1" style="background-color: #F7F9FB">
+<link rel="stylesheet" type="text/css" href="/css/index.css?<?php echo rand();?>">
+<div id="wrap1">
 <?php
   include SITE_ROOT.'templates/head.php';
 ?>
@@ -25,43 +28,14 @@
 
 
 <?php
-for($i=0;$i<7;$i++) {
+
+$food = getAllFood();
+if(isset($food) && !empty($food)) {
+foreach($food as $v) {
+
 ?>
   	<div class="recipe" style="position: relative;">
 
-<style type="text/css">
-.recipe-delete__wrap{    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 5px;
-    background: #000;
-    cursor: pointer;
-    margin: 30px 18px 0 0;opacity:0.47;transition:opacity 0.31s ease}
-.recipe-delete__wrap:hover{opacity:1;}   
-
-
-
-.footer{    text-align: center;
-    padding: 25px 0 24px;
-    border-top: 1px solid #DDDFE1;
-    background-color: #FFF;
-    line-height: 34px;
-}
-
-
-.content-container{width:740px;margin:0 auto;padding:14px 0;}
-
-.recipe{width:246.666666667px;float: left;padding:24px 0;}
-.recipe-wrap{padding:7px 17px}
-.recipe-photo{width: 100%}
-.content{background-color: #F7F9FB}
-
-.recipe-photo__info__wrap{text-align: center;margin-top:7px;margin-bottom:7px;}
-.recipe-photo__title_text{font-weight: bold;}
-.recipe-photo__text{padding:3px 0 3px}
-.recipe-photo__author_link{border-bottom:1px dashed #607d8b	}
-.recipe-photo__text_date_created{color:#808080}
-</style>
 
   		<div class="recipe-delete__wrap" style="" onclick="deletemon(42);event.preventDefault();"><img src="/images/icons/close.png"></div>
 
@@ -81,6 +55,7 @@ for($i=0;$i<7;$i++) {
   	</div>
 
 <?php
+}
 }
 ?>
 
