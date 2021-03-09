@@ -15,31 +15,6 @@
 <body>
 
 <div id="wrap1" style="background-color: #F7F9FB">
-	<style type="text/css">
-.content{background-color: #F7F9FB}
-
-
-
-
-
-.footer{    text-align: center;
-    padding: 25px 0 24px;
-    border-top: 1px solid #DDDFE1;
-    background-color: #FFF;
-    line-height: 34px;
-}
-
-
-.content-container{width:740px;margin:0 auto;padding:14px 0;}
-
-.recipe{width:246.666666667px;float: left;padding:24px 0;}
-.recipe-wrap{padding:7px 17px}
-.recipe-photo{width: 100%}
-.content{background-color: #F7F9FB}
-
-	</style>
-
-
 <?php
   include SITE_ROOT.'templates/head.php';
 ?>
@@ -63,6 +38,29 @@ for($i=0;$i<7;$i++) {
     cursor: pointer;
     margin: 30px 18px 0 0;opacity:0.47;transition:opacity 0.31s ease}
 .recipe-delete__wrap:hover{opacity:1;}   
+
+
+
+.footer{    text-align: center;
+    padding: 25px 0 24px;
+    border-top: 1px solid #DDDFE1;
+    background-color: #FFF;
+    line-height: 34px;
+}
+
+
+.content-container{width:740px;margin:0 auto;padding:14px 0;}
+
+.recipe{width:246.666666667px;float: left;padding:24px 0;}
+.recipe-wrap{padding:7px 17px}
+.recipe-photo{width: 100%}
+.content{background-color: #F7F9FB}
+
+.recipe-photo__info__wrap{text-align: center;margin-top:7px;margin-bottom:7px;}
+.recipe-photo__title_text{font-weight: bold;}
+.recipe-photo__text{padding:3px 0 3px}
+.recipe-photo__author_link{border-bottom:1px dashed #607d8b	}
+.recipe-photo__text_date_created{color:#808080}
 </style>
 
   		<div class="recipe-delete__wrap" style="" onclick="deletemon(42);event.preventDefault();"><img src="/images/icons/close.png"></div>
@@ -73,10 +71,11 @@ for($i=0;$i<7;$i++) {
   	  <div class="recipe-photo__wrap">
   	  	<img src="/images/download.png" class="recipe-photo">
   	  </div>
-  	  <div class="recipe-photo__info" style="text-align: center;margin-top:7px;margin-bottom:7px;">
-  	  	<div class="recipe-photo__title"><a style="font-weight: bold;">нарткои</a></div>
-  	  	<div class="recipe-photo__text" style="padding:3px 0 3px">нарткои</div>
-  	  	<div class="recipe-photo__author"><a href="/" style="border-bottom:1px dashed #607d8b">нарткои</a></div>
+  	  <div class="recipe-photo__info__wrap">
+  	  	<div class="recipe-photo__title"><a class="recipe-photo__title_text">нарткои</a></div>
+  	  	<div class="recipe-photo__text">нарткои</div>
+  	  	<div class="recipe-photo__text_date_created">24 dec of 2021</div>
+  	  	<div class="recipe-photo__author"><a href="/" class="recipe-photo__author_link">нарткои</a></div>
   	  </div>
   	</div>
   	</div>
