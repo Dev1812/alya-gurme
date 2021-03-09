@@ -54,13 +54,18 @@ for($i=0;$i<7;$i++) {
 ?>
   	<div class="recipe" style="position: relative;">
 
-  		<div style="    position: absolute;
+<style type="text/css">
+.recipe-delete__wrap{    position: absolute;
     top: 0;
     right: 0;
     padding: 5px 5px;
     background: #000;
     cursor: pointer;
-    margin: 30px 18px 0 0" onclick="deletemon(42);event.preventDefault();"><img src="/images/icons/close.png"></div>
+    margin: 30px 18px 0 0;opacity:0.47;transition:opacity 0.31s ease}
+.recipe-delete__wrap:hover{opacity:1;}   
+</style>
+
+  		<div class="recipe-delete__wrap" style="" onclick="deletemon(42);event.preventDefault();"><img src="/images/icons/close.png"></div>
 
 
 
