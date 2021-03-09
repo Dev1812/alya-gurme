@@ -1,10 +1,17 @@
 <style type="text/css">
-.head{height:53px;padding:0 21px;border-bottom:1px solid #DDDFE1;}
+	@font-face{font-family:Myriad_set_pro_Thin;src:local(Myriad_set_pro_Thin),url(../fonts/myriad-set-pro_text.woff)}
+*{
+  box-sizing:border-box;
+  font-family: -apple-system ,BlinkMacSystemFont ,'Segoe UI', "Myriad_set_pro_Thin","SF Pro Text","Myriad Set Pro","SF Pro Icons","Apple Legacy Chevron","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+
+.head{height:53px;padding:0 21px;border-bottom:1px solid #DDDFE1;background-color: #FFF;}
 .float_left{float:left;}
 .float_right{float:right;}
 .head-link{float:left;padding:15px 11px 15px;}
 .head-logo{position: relative;right:7px;top: 0px;}
-html, body{margin:0;font:14px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;}
+html, body{font-size:15px;margin:0;padding:0;}
 a{text-decoration: none;color: #607d8b}
 .text_field{border:1px solid #DDD;background-color: #F7F9FB;
 
