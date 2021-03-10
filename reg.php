@@ -1,29 +1,17 @@
 <?php
-
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-  session_set_cookie_params(199999);
-  ini_set('session.gc_maxlifetime', 199999);
-  ini_set('session.cookie_lifetime', 199999);
-  session_name('sid');
-  session_start();
-
-  if(!empty($_SESSION['user_id'])) {
-    header('Location: /menu.php');
+if(!empty($_SESSION['user_id'])) {
+    //header('Location: /menu.php');
   }
-ob_start();
+  ob_start();
   define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
   define('TITLE', 'Админ-панель');
   define('SITE_NAME', 'Аля гурме');
-
+  include SITE_ROOT.'template/top_params.php';
   include SITE_ROOT.'lib/reg.php';
 ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
 <?php
-
- 
   include SITE_ROOT.'template/header.php';
 ?>
 
@@ -41,30 +29,45 @@ include SITE_ROOT.'template/head.php';
 <div class="wrap1">
   
 <?php
-
-  var_dump($_SESSION);
   if(!empty($_POST['reg_submit'])) {
-   // $admin_login = auth($_POST['login_login'], $_POST['login_password']);
-
-
     $reg = reg($_POST['reg_first_name'], $_POST['reg_last_name'], $_POST['reg_email'], $_POST['reg_password']);
-
-
   }
 ?>
 
 <style type="text/css">
   
 .label{text-align: left;}
+.form{
+  background-color:#ffefe9;
+  border:1px solid #f2ab99;
+  padding:7px 12px;
+  margin:7px 0 11px;
+}
+
+.form__title{font-size:19px;margin-bottom:7px;font-weight:bold;}
+.form__description{}
+.forma{}
 </style>
 
 
 <div style="padding:45px 0;">
-  <div style="width:410px;margin:0 auto;background-color:#FFF;padding:34px 34px;box-shadow:0 0 13px #EEE;border-radius:7px;">
+  <div style="width:410px;margin:0 auto;background-color:#FFF;padding:34px 34px;border:1px solid #DDD;border-radius:7px;">
     <div style="font-size:19px;margin-bottom:27px;text-transform: uppercase;font-weight:bold;">Регистрация</div>
 <FORM action="" method="POST">
   
 
+        <?php
+
+        if(isset($reg['error']['error_message']) && !empty($reg['error']['error_message'])) {
+?>
+<div class="form">
+<div class="form__title"><?php echo $reg['error']["error_message"];?></div>
+<div class="form__description"><?php echo $reg['error']["error_message"];?></div>
+</div>
+<?php
+
+        }
+        ?>
 
     <div class="label">Ваше имя</div>
     <div class="input_wrap">
@@ -109,7 +112,6 @@ include SITE_ROOT.'template/head.php';
 <?php
   include SITE_ROOT.'template/footer.php';
 
-ob_end_flush();
 ?>
 
 </body>

@@ -1,10 +1,4 @@
 <?php
-
-
-
-
-
-
   define('MIN_FIRSTNAME', 3);
   define('MAX_FIRSTNAME', 74);
 

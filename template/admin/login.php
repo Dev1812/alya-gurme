@@ -40,11 +40,39 @@ include SITE_ROOT.'template/head.php';
 </style>
 
 
+<style type="text/css">
+  
+.label{text-align: left;}
+.form{
+  background-color:#ffefe9;
+  border:1px solid #f2ab99;
+  padding:7px 12px;
+  margin:7px 0 11px;
+}
+
+.form__title{font-size:19px;margin-bottom:7px;font-weight:bold;}
+.form__description{}
+.forma{}
+</style>
+
+
 <div style="padding:45px 0 124px;">
   <div style="width:410px;margin:0 auto;background-color:#FFF;padding:34px 34px;border:1px solid #DDDFE1;border-radius:7px;">
     <div style="font-size:19px;margin-bottom:27px;text-transform: uppercase;font-weight:bold;">Войти в Админ-паенль</div>
 <FORM action="" method="POST">
   
+
+        <?php
+        if(isset($admin_login['error']['error_message']) && !empty($admin_login['error']['error_message'])) {
+?>
+<div class="form">
+<div class="form__title"><?php echo $admin_login['error']["error_message"];?></div>
+<div class="form__description"><?php echo $admin_login['error']["error_message"];?></div>
+</div>
+<?php
+
+        }
+        ?>
 
 
     <div class="label">Ваш email</div>

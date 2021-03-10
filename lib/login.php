@@ -24,7 +24,7 @@
 
 
 function login($email, $password) {
-  include 'lib/database.php';
+ // include 'lib/database.php';
 
 
 
@@ -76,7 +76,8 @@ function login($email, $password) {
 
   header('Location: /menu.php');
 } else {
-	var_dump('~!~~');
+      return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>'s', 'error_field'=>'password'));
+
 }
 }
 

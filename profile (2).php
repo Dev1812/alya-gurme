@@ -56,7 +56,7 @@ $arr = array();
 //var_dump($category);
 
 
-$sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE `owner_id` = :owner_id AND `is_deleted`=true ORDER BY `id` DESC";
+$sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE `owner_id` = :owner_id ORDER BY `id` DESC";
 
 
   $is_email_exist = $link->prepare($sql);

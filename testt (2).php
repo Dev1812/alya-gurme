@@ -1,4 +1,6 @@
-<?php
+        <?php
+
+
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -37,25 +39,14 @@ var_dump($owner_id);
 $user_type =  !empty($_SESSION['user_type']) ?  $_SESSION['user_type'] : '';
 $user_id =  !empty($_SESSION['user_id']) ?  $_SESSION['user_id'] : '';
 
+var_dump($_SESSION); 
 
 if($row1['owner_id'] == $user_id || $user_type == 'admin') {
 
-var_dump($_SESSION); /*
-$sql = "UPDATE `food` SET `is_deleted`='true'  WHERE `id` = :food_id";
- // $is_email_exist = $link->prepare("UPDATE `food` SET `is_deleted`= 'true' WHERE `id` = :food_id");
-  $is_email_exist = $link->prepare($sql);
-  $is_email_exist->execute(array(':food_id' => $food_id));*/
 
+  $is_email_exist = $link->prepare("UPDATE `food` SET `is_deleted`= 'true' WHERE `id` = :food_id");
+  $is_email_exist->execute(array(':food_id' => $food_id));
 
-
-$sql = "UPDATE `food` SET `is_deleted`='true' WHERE `id` = :owner_id";
-
-
-  $is_email_exist1 = $link->prepare($sql);
-  $is_email_exist1->execute(array(':owner_id' => $food_id));
-
-
-var_dump($is_email_exist1);
 
 
 return true;

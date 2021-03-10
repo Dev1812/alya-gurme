@@ -155,6 +155,7 @@ if(!empty($_SESSION['user_id'])) {
     <a href="/admin.php" class="head-link">Админ-панель</a>
 
   <?php
+
 if(!empty($_SESSION['user_id'])) {
   echo '
     <a href="/logout.php" class="head-link">Выход</a>';
@@ -379,8 +380,6 @@ var Head = {
       <div class="sidebar-content">
         <?php
  // var_dump($_SESSION);
-        var_dump($_SESSION);
-
 if(!empty($_SESSION['user_id'])) {
   $initials = $_SESSION['first_name'].' '.$_SESSION['last_name'];
 
