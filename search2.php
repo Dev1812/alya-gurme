@@ -14,7 +14,7 @@ ob_start();
   define('TITLE', 'Админ-панель');
   define('SITE_NAME', 'Аля гурме');
 
-  include SITE_ROOT.'lib/database.php';
+ // include SITE_ROOT.'lib/database.php';
   include SITE_ROOT.'lib/reg.php';
 ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
@@ -40,7 +40,7 @@ include SITE_ROOT.'template/head.php';
   
 <?php
 
-  var_dump($_SESSION);
+  //var_dump($_SESSION);
   if(!empty($_POST['reg_submit'])) {
    // $admin_login = auth($_POST['login_login'], $_POST['login_password']);
 
@@ -58,7 +58,7 @@ include SITE_ROOT.'template/head.php';
 
 
 <div style="padding:45px 0;">
-  <div style="width:410px;margin:0 auto;background-color:#FFF;padding:34px 34px;box-shadow:0 0 13px #EEE;border-radius:7px;">
+  <div style="width:510px;margin:0 auto;background-color:#FFF;padding:34px 34px;border:1px solid #DDD;border-radius:7px;">
     <div style="font-size:19px;margin-bottom:27px;text-transform: uppercase;font-weight:bold;">Поиск</div>
 <FORM action="" method="GET">
   
@@ -83,21 +83,40 @@ $search = search($_GET['q']);
 </FORM>
 <div style="margin-top:14px;">
 
+
+
+
+
+
+
+
 <?php
 if(empty($_GET['search_submit'])) {
 
 } else {
 $search = search($_GET['q']);
+$search_count = count($search);
+  echo '
+Вот что удалось найти';
+if($search_count == 0 && empty($_POST['reg_submit'])) {
+
+    echo '<div style="text-align:center;padding:47px 0;color:#808080">Не найдено ни отдной записи</div>'; 
+}
+
+if($search === false || empty($search)) {
+
+} else {
 foreach($search as $v) {
+$photo_path = !empty($v['photo_path']) ? $v['photo_path'] : 'image/download.png';
 ?>
 <a href="/food.php?food_id=<?echo $v['id'];?>" target="_blank">
 	<div style="padding:7px 0;">
-<img style="width:44px;" src="<?php echo $v['photo_path'];?>">
+<img style="width:44px;" src="<?php echo $photo_path;?>">
 
-<span style="position:relative;top:-10px;left:9px;"><?php echo $v['title'];?></span></div></a>	
+<span style="position:relative;top:-15px;left:9px;"><?php echo $v['title'];?></span></div></a>	
 <?php
 }
-}
+}}
 ?>
 </div>
 

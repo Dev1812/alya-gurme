@@ -4,6 +4,10 @@
   $link = connectDatabase();
 
 
+if($search_word == '' || $search_word == ' ') {
+  return false;
+}
+
 $search_word = explode(' ', $search_word);
 $sql = 'SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE ';
 for($i=0;$i<count($search_word); $i++) {

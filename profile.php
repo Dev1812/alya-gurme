@@ -56,7 +56,7 @@ $arr = array();
 //var_dump($category);
 
 
-$sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE `owner_id` = :owner_id AND `is_deleted`=true ORDER BY `id` DESC";
+$sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `description` FROM `food` WHERE `owner_id` = :owner_id AND `is_deleted`=false ORDER BY `id` DESC";
 
 
   $is_email_exist = $link->prepare($sql);
@@ -81,7 +81,7 @@ $row1['owner_info'] = getUserInfo($row1['owner_id']);
       }
 
 
-  $is_email_exist2 = $link->prepare("SELECT COUNT(`id`) FROM `food` WHERE `owner_id` = :food_id AND `is_deleted` = true");
+  $is_email_exist2 = $link->prepare("SELECT COUNT(`id`) FROM `food` WHERE `owner_id` = :food_id AND `is_deleted` = false");
   $is_email_exist2->execute(array(':food_id' => $category));
 
   
@@ -128,8 +128,6 @@ function declOfNum($num, $titles) {
     return $num . " " . $titles[($num % 100 > 4 && $num % 100 < 20) ? 2 : $cases[min($num % 10, 5)]];
 }
  //<?php echo $food['count']['COUNT(`id`)'];
-
-
 ?>
   <div style="margin-top:14px;"><?php echo declOfNum($food['count']['COUNT(`id`)'], array('запись', 'записи', 'записей'));?></div>
   </div>

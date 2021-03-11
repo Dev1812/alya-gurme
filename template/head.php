@@ -202,7 +202,7 @@ if(!empty($_SESSION['user_id'])) {
 <style type="text/css">
   
 .gray-head{margin-top:0;text-align: center;width: 100%;border-bottom:1px solid #DDD;height:51px;padding: 0 23px;position: fixed;left:0
-right:0;z-index:9999;background-color: #FFF;}
+right:0;z-index:9;background-color: #FFF;}
 </style>
 
 <div class="gray-head">
