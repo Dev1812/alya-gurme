@@ -1,9 +1,13 @@
 <?php
-  define('TITLE', 'Админ-панель');
-  define('SITE_NAME', 'Аля гурме');
+define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
+define('TITLE', 'Аля гурме');
+define('SITE_NAME', 'Аля гурме');
+
+include SITE_ROOT.'template/top_params.php';
+  
 ?>
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<html>
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd"><html>
 
 <?php
   include SITE_ROOT.'template/header.php';

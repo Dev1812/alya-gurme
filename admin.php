@@ -1,20 +1,9 @@
 <?php
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-  session_set_cookie_params(199999);
-  ini_set('session.gc_maxlifetime', 199999);
-  ini_set('session.cookie_lifetime', 199999);
-  session_name('sid');
-  session_start();
-  
-
-ob_start();
+//ob_start();
 
 $user_type = !empty($_SESSION['user_type']) ? $_SESSION['user_type'] : '';
 $act = !empty($_GET['act']) ? $_GET['act'] : '';
 
-  define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
   include 'lib/user.php';
  // include 'lib/database.php';
   include 'lib/admin_page.php';
