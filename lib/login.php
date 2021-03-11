@@ -55,7 +55,7 @@ function login($email, $password) {
   }
   $database = connectDatabase();
 
-  $is_email_exist = $database->prepare("SELECT `id`, `first_name`, `last_name`, `hashed_password`, `salt` FROM `users` WHERE `email` = :email");
+  $is_email_exist = $database->prepare("SELECT `id`, `first_name`, `last_name`, `hashed_password`, `salt`, `is_admin` FROM `users` WHERE `email` = :email");
 
 //var_dump($row1);
 
@@ -65,8 +65,12 @@ function login($email, $password) {
 
   $is_email_exist->execute(array(':email' => $email));
   $row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC);
-  if(checkPassword($row1['hashed_password'], $password, $row1['salt'])) {
 
+  if(checkPassword($row1['hashed_password'], $password, $row1['salt'])) {
+    if($row1['is_admin'] == true) {
+
+      return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>'s', 'error_field'=>'password'));
+    }
 
      $_SESSION['user_id'] = $row1['id'];
      $_SESSION['first_name'] = $row1['first_name'];

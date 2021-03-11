@@ -2,9 +2,10 @@
 ob_start();
   define('TITLE', 'Админ-панель');
   define('SITE_NAME', 'Аля гурме');
+  /*
   if(isUserAuth()) {
     header('Location:/admin.php?act=create_food');
-  }
+  }*/
 ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>

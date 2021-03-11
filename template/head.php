@@ -174,6 +174,10 @@ if(!empty($_SESSION['user_id'])) {
 </div>
 
 
+
+<?php
+if(!empty($_SESSION['user_id'])) {
+  echo '
 <a href="/menu.php?act=create_food">
   
 <div id="test" style="background-color: #00bcd4;width: 53px; text-align:center;border-radius:74px;height: 53px;position: fixed;bottom:0;right:0;margin-bottom:47px;margin-right:47px;cursor:pointer;">
@@ -183,7 +187,10 @@ if(!empty($_SESSION['user_id'])) {
 </div>
 
 </a>
+';
+}
 
+?>
 
 
 
@@ -391,7 +398,7 @@ if(!empty($_SESSION['user_id'])) {
     <div class="sidebar-user__bar_wrap">
             <img style="width:70px;height:70px;" src="'.$photo.'">
     </div>
-        <a class="sidebar-content__line_wrap" href="/profile/get/?profile_id=12"><div class="sidebar-content__line sidebar-content__line_user_initials">'.$initials.' '.$initials.'<span style="font-weight:normal;margin-left:7px;border-bottom:1px dashed #000;">'.$is_admin.'</span></div></a>';
+        <a class="sidebar-content__line_wrap" href="/profile/get/?profile_id=12"><div class="sidebar-content__line sidebar-content__line_user_initials">'.$initials.'<span style="font-weight:normal;margin-left:7px;border-bottom:1px dashed #000;">'.$is_admin.'</span></div></a>';
 } else {
   echo '<div style="margin: 14px 0 7px 0;padding-bottom:14px;border-bottom:1px solid #ddd">
          <a class="sidebar-content__line_wrap" href="/login.php" style="border-bottom:1px dashed #DDD"><div class="sidebar-content__line">Войти</div></a>

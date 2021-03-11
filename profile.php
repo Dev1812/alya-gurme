@@ -65,7 +65,6 @@ $sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `de
 
 
 
-
 //var_dump($is_email_exist);
       while($row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC)) {
       /*  if(User::isAdmin()) {
@@ -82,9 +81,8 @@ $row1['owner_info'] = getUserInfo($row1['owner_id']);
       }
 
 
-  $is_email_exist2 = $link->prepare("SELECT COUNT(`id`) FROM `food` WHERE `owner_id` = :food_id");
-  $is_email_exist2->execute(array(':food_id' => $_GET['category_id']));
-
+  $is_email_exist2 = $link->prepare("SELECT COUNT(`id`) FROM `food` WHERE `owner_id` = :food_id AND `is_deleted` = true");
+  $is_email_exist2->execute(array(':food_id' => $category));
 
   
   return array('test'=>$arr, 'count'=>$is_email_exist2->fetch(PDO::FETCH_ASSOC));
@@ -123,8 +121,17 @@ $user_initials = $user_info['first_name'].' '.$user_info['last_name'];
 
   <div style="margin-left:170px;margin-top:7px">
     <span style="font-weight: bold;"><?php echo $user_initials;?></span>
+<?php
+function declOfNum($num, $titles) {
+    $cases = array(2, 0, 1, 1, 1, 2);
 
-  <div style="margin-top:14px;"><?php echo $food['count']['COUNT(`id`)'];?> записей</div>
+    return $num . " " . $titles[($num % 100 > 4 && $num % 100 < 20) ? 2 : $cases[min($num % 10, 5)]];
+}
+ //<?php echo $food['count']['COUNT(`id`)'];
+
+
+?>
+  <div style="margin-top:14px;"><?php echo declOfNum($food['count']['COUNT(`id`)'], array('запись', 'записи', 'записей'));?></div>
   </div>
 
 
