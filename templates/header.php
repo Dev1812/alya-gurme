@@ -22,7 +22,7 @@
 
     <meta name="viewport" content="width=device-width, user-scalable=yes">
 
-    <link href="/css/comon.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
+    <link href="/css/common.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
 
 
 </head>
