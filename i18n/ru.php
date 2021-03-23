@@ -15,6 +15,13 @@ return array(
 
 
 
+'short_title' => array('title'=>'Слишком короткий Заголовок', 'description'=>'Пожалуйста, проверьте длину Заголовка'),
+
+'long_title' => array('title'=>'Слишком длинный Заголовок', 'description'=>'Пожалуйста, проверьте длину Заголовка'),
+
+'short_description' => array('title'=>'Слишком короткое описание', 'description'=>'Пожалуйста, проверьте длину Описания'),
+
+'long_description' => array('title'=>'Слишком длинное описание', 'description'=>'Пожалуйста, проверьте длину Описания'),
 
 
 'form_description'=>'Здесь Вы сможете весело провести время',
@@ -24,6 +31,8 @@ return array(
 
 
 
+
+'food_success_created'=>array('title'=>'Запись успешно создана', 'description'=>'Запись опубликована'),
 'form_send'=>'Отправить',
 
 'your_password'=>'Ваш пароль',
@@ -66,7 +75,7 @@ return array(
 'long_title'=>array('title'=>'Слишком длинный Заголовок', 'description'=>'Длина Заголовка должна быть не более 74 символов'),
 'incorrect_title'=>array('title'=>'Заголовок указан неверно', 'description'=>'Пожалуйста, проверьте правильность ввода Заголовка'),
 
-'short_description'=>array('title'=>'Слишком короткое описание задания', 'description'=>'Длина Описания должна быть не менее 4 символов'),
+'short_description'=>array('title'=>'Слишком короткое описание задания', 'description'=>'Длина Описания должна быть не менее 7 символов'),
 'long_description'=>array('title'=>'Слишком длинное описание задания', 'description'=>'Длина Описания должна быть не более 74 символов'),
 'incorrect_title'=>array('title'=>'Описание указано неверно', 'description'=>'Пожалуйста, проверьте правильность ввода Описания'),
 

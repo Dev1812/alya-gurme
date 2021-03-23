@@ -6,15 +6,15 @@ function createFood() {
   $i18n = new i18n;
 
   if($create_food_title_length < 3) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_firstname'))));
+    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_title')));
   } else if($create_food_title_length > 251) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_firstname'))));
+    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_title')));
   } 
 
-  if($create_food_description_length < 3) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_firstname')));
+  if($create_food_description_length < 7) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_description')));
   } else if($create_food_description_length > 90000) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_firstname')));
+    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_description')));
   }
 
 
@@ -47,4 +47,5 @@ function createFood() {
                                  ':title' => $_POST['create_food_title'],
                                  ':description' => $_POST['create_food_description'],
                                  ':category' => $_POST['create_food_category']));
+  return array('is_error' => false, 'message' => $i18n->get('food_success_created'));
 }

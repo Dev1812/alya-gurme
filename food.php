@@ -25,8 +25,6 @@
 <div class="content" style="padding-bottom:17px">
 
 <div class="wrap1" style="padding:0;">
-  
-  <div style="background-color: #FFF;padding:14px 34px;border:1px solid #DDDFE1;margin-top:24px;">
     <?php
   include SITE_ROOT.'libs/user.php';
  // include SITE_ROOT.'libs/database.php';
@@ -36,13 +34,26 @@
 ?>
 <?php
 
+  if(empty($food)) {
+    echo '<div style="text-align:center;padding:74px 0 67px;">
+            <div>Не найдено ни отдной записи</div>
+            <div style="margin-top:7px"><a href="/menu.php?act=create_food">Создать запись</a></div>
+          </div>';
+  } else{
+
+?>
+
+  
+  <div style="background-color: #FFF;padding:14px 34px;border:1px solid #DDDFE1;margin-top:24px;">
+<?php
+  
   $first_name = !empty($food['owner_info']['first_name']) ? $food['owner_info']['first_name'] : '';
     
 
   $last_name = !empty($food['owner_info']['last_name']) ? $food['owner_info']['last_name'] : '';
     
 
-    $photo = !empty($food['photo_path']) ? $food['photo_path'] : '/image/s1200-6.jpg';
+    $photo = !empty($food['photo_path']) ? $food['photo_path'] : '/image/download.png';
     $user_initials = $first_name.' '.$last_name;
 ?>
 
@@ -65,12 +76,15 @@
       </div>
     </div>
 
-
+<div>
+  <div class="clear"></div>
 <div style="font-size: 17px;margin-bottom: 14px;">Поделиться:</div>
     <script src="https://yastatic.net/share2/share.js"></script>
 <div class="ya-share2" data-curtain data-services="vkontakte,facebook,odnoklassniki,telegram"></div>
 
 
+
+</div>
 </div>
 
 
@@ -98,6 +112,12 @@ VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
 
 
 
+
+<?php
+
+}
+
+?>
   </div>
 
 </div>

@@ -16,10 +16,11 @@ if(empty($_SESSION['user_id'])) {
 
 include SITE_ROOT.'templates/head.php';
 //include SITE_ROOT.'lib/database.php';
+/*
 include SITE_ROOT.'libs/menu.php';
 if(!empty($_GET['photo_id'])) {
   echo 'alertt';
-}
+}*/
 ?>
 
 
@@ -102,10 +103,7 @@ ajax.addEventListener("readystatechange", function() {
 <?php
 
 
-if(empty($_POST['create_food_submit'])) {
-
-
-} else {
+if(!empty($_POST['create_food_submit'])) {
 
 include SITE_ROOT.'libs/create_food.php';
 
@@ -121,15 +119,29 @@ $create_food = createFood();
 
 
         <?php
+
         if(isset($create_food['error']['error_message']) && !empty($create_food['error']['error_message'])) {
+        if($create_food['is_error']) {
 ?>
 <div class="form">
-<div class="form__title"><?php echo $create_food['error']["error_message"];?></div>
-<div class="form__description"><?php echo $create_food['error']["error_message"];?></div>
+<div class="form__title"><?php echo $create_food['error']["error_message"]['title'];?></div>
+<div class="form__description"><?php echo $create_food['error']["error_message"]['description'];?></div>
 </div>
 <?php
 
         }
+} else {
+  if(isset($create_food['message']) || !empty($create['message'])) {
+  ?>
+
+
+<div class="form form-success">
+<div class="form__title"><?php echo $create_food['message']['title'];?></div>
+<div class="form__description"><?php echo $create_food['message']['description'];?></div>
+</div>
+  <?php
+  }
+}
         ?>
 
 

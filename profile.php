@@ -6,32 +6,6 @@
   include SITE_ROOT.'templates/top_params.php';
   include SITE_ROOT.'libs/database.php'
 ?>
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<html>
-
-<?php
-  include SITE_ROOT.'templates/header.php';
-?>
-
-<body>
-
-
-<?php
-
-
-  include SITE_ROOT.'templates/head.php';
-?>
-
-<div class="content">
-
-<div class="wrap1">
-
-<div>
-  
-
-
-
-
 <?php
 
 function getAllFood() {
@@ -54,7 +28,8 @@ $sql = "SELECT `id`, `photo_path`, `owner_id`, `timestamp_created`, `title`, `de
 
 
   $is_email_exist = $link->prepare($sql);
-  $is_email_exist->execute(array(':owner_id' => $_GET['category_id']));
+  $category_id = !empty($_GET['category_id']) ? $_GET['category_id'] : '';
+  $is_email_exist->execute(array(':owner_id' => $category_id));
 
 
 
@@ -85,8 +60,53 @@ $row1['owner_info'] = getUserInfo($row1['owner_id']);
 
 
 }
+$food = getAllFood();
 
 ?>
+
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+
+<?php
+  include SITE_ROOT.'templates/header.php';
+?>
+
+<body>
+
+
+<?php
+
+
+  include SITE_ROOT.'templates/head.php';
+?>
+
+<div class="content">
+
+
+
+
+
+
+
+
+<div class="wrap1">
+
+<?php
+
+  if(empty($food['test'])) {
+    echo '<div style="text-align:center;padding:74px 0 67px;">
+            <div>Не найдено ни отдной записи</div>
+            <div style="margin-top:7px"><a href="/menu.php?act=create_food">Создать запись</a></div>
+          </div>';
+  } else{
+
+?>
+<div>
+  
+
+
+
 
 
 
@@ -98,7 +118,6 @@ $row1['owner_info'] = getUserInfo($row1['owner_id']);
 
 
 <?php
-$food = getAllFood();
 //var_dump($food)
 
 ///image/download.png
@@ -106,7 +125,10 @@ $photo = !empty($_SESSION['photo_path']) ? $_SESSION['photo_path'] : 'image/Pmz7
 
 //var_dump($food);
 
-$user_info = getUserInfo($_GET['category_id']);
+
+$category = !empty($_GET['category_id']) ? $_GET['category_id'] : '';
+
+$user_info = getUserInfo($category);
 
 $user_initials = $user_info['first_name'].' '.$user_info['last_name'];
 ?>
@@ -211,6 +233,9 @@ if(!empty($_GET['photo_id'])) {
 </div>
 
 
+<?php
+}
+?>
 
   </div>
 <div class="clear"></div>

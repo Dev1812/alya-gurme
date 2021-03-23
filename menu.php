@@ -4,6 +4,7 @@ define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
 define('TITLE', 'Меню | Аля-гурме');
 define('SITE_NAME', 'Аля гурме');
 include SITE_ROOT.'templates/top_params.php';
+include SITE_ROOT.'libs/i18n.php';
   
 ob_start();
 include 'libs/user.php';

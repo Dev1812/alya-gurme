@@ -27,109 +27,6 @@
 
 <div id="lol" style="display:none;position: absolute;top:54px;z-index:9999;margin-left:157px;background-color:#FFF;width:210px;border:1px solid #DDD;padding:7px 0;"></div>
 
-<script type="text/javascript">
-  var ajax = {
-  init: function() {
-    var xhr;
-    try {
-      xhr = new ActiveXObject('Msxml2.XMLHTTP');
-    } catch(e) {
-      try {
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      } catch(e) {
-        xhr = false;
-      }
-    }
-    if(!xhr && typeof XMLHttpRequest!='undefined') {
-      xhr = new XMLHttpRequest();
-    }
-    return xhr;  
-  },
-  request: function(param) {
-    var r = ajax.init(), method = param.method || 'POST';
-    r.open(method, param.url, true);
-    r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    r.send(param.data);
-    if(param.showProgress) {
-      param.showProgress();
-    }
-    r.onreadystatechange = function() {
-      if(r.readyState == 4) {
-        if(r.status >= 200 && r.status < 300) {
-          var response = parseJSON(r.responseText);
-          if(response.js) {
-            ajax.pasteJs(response.js);
-          }
-          if(param.success) {
-            param.success(response);
-          }
-        }      
-        if(param.hideProgress) {
-          param.hideProgress();
-        }
-      }
-    };  
-    return r;
-  },
-  post: function(param) {
-    return ajax.request({
-      url: param.url,
-      data: param.data,
-      method: 'POST',
-      showProgress: param.showProgress,
-      hideProgress: param.hideProgress,
-      success: param.success,
-      error: param.error,
-    });
-  },
-  get: function(param) {
-    return ajax.request({
-      url: param.url,
-      method: 'GET',
-      showProgress: param.showProgress,
-      hideProgress: param.hideProgress,
-      success: param.success,
-      error: param.error,
-    });
-  },
-  pasteJs: function(js) {
-    if(!js) return false;
-    var code = document.createElement('script');
-    code.type = 'text/javascript';
-    code.innerHTML = js;
-    document.head.appendChild(code);
-  }
-}
-
-
-function parseJSON(obj){
-  if(window.JSON && JSON.parse) {
-    return JSON.parse(obj);
-  }
-  return eval('('+obj+')');
-}
-function topMenuSearch(value) {
-if(value.length < 1) { 
-return false;
-}
-      var responsr='';  
-responsr += '<a href="/search2.php?q='+document.getElementById('dffg').value+'" target="_blank"><div class="okantovka" style="background-color:#FBFBFB">Показать все результаты</div></a>';
-  console.log(value);
-  ajax.get({
-    url: '/search.php?q='+value,
-    data: '',
-    success: function(data) {
-      for(var i in data) {
-responsr += '<a href="/food.php?food_id='+data[i].id+'" target="_blank"><div class="okantovka">'+data[i].title+'</div></a>';
-      }
-
-      document.getElementById('lol').innerHTML=responsr;
-      console.log(data);
-    }
-  });
-}
-</script>
 <style type="text/css">
 .okantovka{padding:5px 17px;}
 .okantovka:hover{background-color: #fbfbfb}
@@ -329,49 +226,9 @@ $arr[7] = $is_email_exist8->fetch(PDO::FETCH_ASSOC);
 
 
 
-#sidebar-global__layer{position: fixed;top:0;left:250px;
-    z-index: 99999;
-right:0;bottom:0;background-color:#484545;opacity:.7;cursor:pointer;}
-#sidebar{position:fixed;top:0;left:0;bottom:0;width:250px;background-color: #FFF;border-right:1px solid #DDD;transition:margin 0.3s ease;z-index: 999999}
-.sidebar-top__search_wrap{height:45px;border-bottom:1px solid #DDD;}
-
-.sidebar-search__field{width:100%;}
-
-.sidebar-top__search_wrap{
-    padding: 9px 15px 16px 15px;}
-
-
-.sidebar-content__line_user_initials{font-weight:bold;}
-
-
-
-
-
-
-
-  .sidebar-user__bar_wrap{
-    padding: 15px 27px 11px;}
-.sidebar-content__line{
-    padding: 7px 27px;
-    color: #000;
-    transition:background-color 0.3s ease
-}
-.sidebar-content__line:hover{background-color:#FAFAFA;}
-
 </style>
 
 <script type="text/javascript">
-
-var Head = {
-  show: function() {
-    $('#sidebar').css({'margin-left':'0px'});
-    $('#sidebar-global__layer').show();
-  },
-  hide: function() {
-    $('#sidebar').css({'margin-left':'-250px'});
-    $('#sidebar-global__layer').hide();
-  }
-}
 
 </script>
 <div id="sidebar-global__layer" style="display: none;" onclick="Head.hide();"></div>
