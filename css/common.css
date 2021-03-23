@@ -1,0 +1,5 @@
+.not_found-block{text-align:center;padding:47px 0;color:#808080}
+.not_found-block__create_food{margin-top:14px;}
+.not_found-block_text{border-bottom: 1px dashed blue}
+
+.delete_food{position:absolute;top:0;right:0;padding: 9px 11px;background: #000;cursor:pointer;margin: 24px 12px 0 0;}
