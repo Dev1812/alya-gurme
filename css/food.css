@@ -1,0 +1,27 @@
+.content{padding-bottom:17px}
+.wrap1{padding:0;}
+.food-container{background-color: #FFF;padding:14px 34px;border:1px solid #DDDFE1;margin-top:24px;}
+.food{overflow: hidden;}
+.food-wrap{margin:17px 0 17px}
+.food-title{text-align: left;font-size:17px;text-transform:uppercase;margin-bottom: 19px;font-weight: bold;}
+
+
+
+.food-owner__wrap{margin-bottom:14px}
+.food-owner__initials{border-bottom:1px dashed blue;}
+.food-owner__photo_wrap{height:200px;}
+
+.food-photo__img{width:300px;float:left;margin: 0 26px 16px 0;border-radius:7px}
+
+.food-description{line-height: 24px;}
+
+.share-container{font-size: 17px;margin-bottom: 14px;}
+
+
+
+
+.comments-container{background-color: #FFF;padding:14px 34px 37px;border:1px solid #DDDFE1;margin-top:34px;margin-bottom: 37px;}
+.comments-container__title{font-size:21px;margin-bottom:27px;margin-top:14px;text-align: left;}
+
+
+

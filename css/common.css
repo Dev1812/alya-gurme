@@ -107,4 +107,5 @@ right:0;bottom:0;background-color:#484545;opacity:.7;cursor:pointer;}
 
 
 .form-success{background-color:#68CC86;color:#FFF;border:1px solid #42A25D}
-.not_found{}
+.not_found{text-align:center;padding:74px 0 67px;}
+.not_found__link_wrap{margin-top:7px}
