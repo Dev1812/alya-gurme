@@ -36,9 +36,9 @@ include SITE_ROOT.'temlate/head.php';
 
 
 <?php
-
+/*
 var_dump($_POST);
-var_dump($_FILES);
+var_dump($_FILES);*/
 ?>
 
 <div class="wrap1" style="padding:27px 37px 27px;text-align:left;width:540px;margin:27px auto;background-color: #FFF;border-radius:4px;border:1px solid #DDDFE1">

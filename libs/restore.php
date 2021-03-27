@@ -102,6 +102,7 @@ function restore($email) {
 
 
 }
+}
 
   define ('MIN_PASSWORD', 4);
   define ('MAX_PASSWORD', 54);
@@ -142,12 +143,13 @@ $i18n = new i18n;
   $is_email_exist->execute(array(':email' => $restore_email,
                                  ':hashed_password' => $hashed_password,
                                  ':salt' => $salt));
+  header('Location: /restore.php');
   return array('is_error' => false, 'message' => $i18n->get('change_password_success'));
 
   
 
 
 }
-}
+
 
 ?>

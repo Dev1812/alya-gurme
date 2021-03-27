@@ -5,6 +5,7 @@ define('TITLE', 'Выход');
 define('SITE_NAME', 'Аля гурме');
 include SITE_ROOT.'templates/top_params.php';
   include SITE_ROOT.'libs/i18n.php';
+  include SITE_ROOT.'libs/restore.php';
   //include SITE_ROOT.'libs/i18n.php';
 
   ob_start();
@@ -13,7 +14,6 @@ include SITE_ROOT.'templates/top_params.php';
 <?php
   include SITE_ROOT.'libs/user.php';
   include SITE_ROOT.'libs/database.php';
-  include SITE_ROOT.'libs/restore.php';
 //  include SITE_ROOT.'libs/i18n.php'
  // include SITE_ROOT.'libs/security.php';
   if(isUserAuth()) {

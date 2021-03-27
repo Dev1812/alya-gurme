@@ -54,8 +54,7 @@ function auth($email, $password) {
      $_SESSION['last_name'] = isset($row1['last_name']) && !empty($row1['last_name']) ? $row1['last_name'] : '';
      $_SESSION['photo_path'] = isset($row1['photo_path']) && !empty($row1['photo_path']) ? $row1['photo_path'] : '';
      $_SESSION['user_type'] = isset($row1['type']) && !empty($row1['type']) ? $row1['type'] : '';
-     var_dump($_SESSION);
-//     header('Location: /admin.php?act=show_menu');
+     header('Location: /admin.php');
 
   } else {
     return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>$i18n->get('incorrect_login_or_password'),'error_field'=>'email'));
