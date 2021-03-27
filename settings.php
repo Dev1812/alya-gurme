@@ -6,6 +6,7 @@ define('SITE_NAME', 'Аля гурме');
 include SITE_ROOT.'templates/top_params.php';
 include SITE_ROOT.'libs/database.php';
 include SITE_ROOT.'libs/settings.php';
+include SITE_ROOT.'libs/i18n.php';
 
 if(empty($_SESSION['user_id'])) {
   //header('Location: /login.php');
@@ -24,6 +25,8 @@ if(empty($_SESSION['user_id'])) {
 
 
   include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 
@@ -39,7 +42,7 @@ if(empty($_SESSION['user_id'])) {
 $new_submit = !empty($_POST['new_submit']) ? $_POST['new_submit'] : '';
 
 if(!empty($new_submit)) {
-  editInfo($_POST['new_firstname'], $_POST['new_lastname']);
+  $edit_info = editInfo($_POST['new_firstname'], $_POST['new_lastname']);
 }
 
 
@@ -58,11 +61,36 @@ $info = init();
 
   <div class="form-message__global_wrap" id="form-message__global_wrap_user_info"></div>
 
+
+
+        <?php
+      //  var_dump($edit_info);
+
+        if(isset($edit_info['error']['error_message']['title']) && !empty($edit_info['error']['error_message']['description'])) {
+?>
+<div class="form">
+<div class="form__title"><?php echo $edit_info['error']["error_message"]['title'];?></div>
+<div class="form__description"><?php echo $edit_info['error']["error_message"]['description'];?></div>
+</div>
+<?php
+
+        } else if(!empty($edit_info['message']['title'])) {
+?>
+
+<div class="form form-success">
+<div class="form__title"><?php echo $edit_info['message']['title'];?></div>
+<div class="form__description"><?php echo $edit_info['message']['description'];?></div>
+</div>  
+<?php
+        }
+        ?>
+
+
   
 <form action="" method="POST">
   
   <div class="input_wrap">
-    <input type="text" name="new_firstname" class="text_field" placeholder="Ваше имя" id="edit_info_first_name">
+    <input type="text" name="new_firstname" class="text_field" placeholder="Ваше имя" id="edit_info_first_name" autofocus="">
     <div class="text_field_tips">Старое имя: <?php echo $info['first_name'];?></div>
   </div>
 

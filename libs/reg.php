@@ -114,7 +114,7 @@ function reg($firstname, $lastname, $email, $password) {
 //var_dump($row1);
 
   if(!empty($row1['id'])) {
-    return array('is_error'=>true,'error'=>array('error_code'=>32, 'error_message'=>'email_exist'), 'error_field'=>'email');
+    return array('is_error'=>true,'error'=>array('error_code'=>32, 'error_message'=>$i18n->get('email_exist'), 'error_field'=>'email'));
   } 
 
   $password_hashing = passwordHashing($password);

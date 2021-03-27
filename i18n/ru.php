@@ -13,7 +13,7 @@ return array(
 
 
 
-
+'change_password_success'=>array('title'=>'Пароль успешно изменен', 'description'=>'Ваш пароль был успешно изменен'),
 
 'short_title' => array('title'=>'Слишком короткий Заголовок', 'description'=>'Пожалуйста, проверьте длину Заголовка'),
 
@@ -22,6 +22,8 @@ return array(
 'short_description' => array('title'=>'Слишком короткое описание', 'description'=>'Пожалуйста, проверьте длину Описания'),
 
 'long_description' => array('title'=>'Слишком длинное описание', 'description'=>'Пожалуйста, проверьте длину Описания'),
+
+'not_auth' => array('title'=>'Пользователь не найден', 'description'=>'Пожалуйста, проверьте правильность ввода'),
 
 
 'form_description'=>'Здесь Вы сможете весело провести время',

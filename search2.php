@@ -21,6 +21,8 @@ include SITE_ROOT.'templates/top_params.php';
 <?php
 
 include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 

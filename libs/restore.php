@@ -6,7 +6,6 @@ define ('MAX_EMAIL', 74);
 
 function restore($email) {
   include SITE_ROOT.'libs/mail.php';
-  include SITE_ROOT.'libs/i18n.php';
 
   $i18n = new i18n;
   
@@ -34,8 +33,8 @@ function restore($email) {
 
   if(empty($row2['id'])) 
   {
-    var_dump('user_not_created');
-    return false;
+    return array('is_error'=>true, 'error'=>array('error_code'=>29, 'error_message'=>$i18n->get('not_auth'), 'error_field'=>'email'));
+
   }
 
 
@@ -59,10 +58,11 @@ function restore($email) {
 
   $mail = new Mail("no-reply@mysite.ru"); 
         $mail->setFromName("Иван Иванов"); 
-       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://local.qwerty.io/restore.php?act=email_check&hash='.$hash
+       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://sgtu-cups/restore.php?act=email_check&hash='.$hash
         .'"></a>')) {
 
-        echo "Письмо отправлено";
+    return array('is_error'=>false, 'messages' => array('title' =>'Успешно выполнено', 'description'=>'Пожалуйста, проверьте Ваш email'));
+
   $_SESSION['restore_email'] = $email;
 
     }  else {
@@ -74,9 +74,8 @@ function restore($email) {
     return array('is_error'=>false, 'messages' => array('title' =>'Успешно выполнено', 'description'=>'Пожалуйста, проверьте Ваш email'));
   } else {
 
-  var_dump('ya: 2');
 
-    $hash = 'gsdg21';
+    $hash =  hash('sha512', time().rand()); 
   $is_email_exist = $database->prepare("INSERT INTO `restore`(`id`, `email`, `hash`, `timestamp_created`, `owner_id`) VALUES (
                                                              '',
                                                              :email,
@@ -89,6 +88,13 @@ function restore($email) {
                                  ':timestamp_created' => 'test',
                                  ':owner_id' => 'test'));
 
+
+  $mail = new Mail("no-reply@mysite.ru"); 
+        $mail->setFromName("Иван Иванов"); 
+       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://sgtu-cups/restore.php?act=email_check&hash='.$hash
+        .'"></a>')) {
+
+  $_SESSION['restore_email'] = $email;
     return array('is_error'=>false, 'messages' => array('title' =>'Успешно выполнено', 'description'=>'Пожалуйста, проверьте Ваш email'));
 
   }
@@ -97,49 +103,51 @@ function restore($email) {
 
 }
 
+  define ('MIN_PASSWORD', 4);
+  define ('MAX_PASSWORD', 54);
+
+
 function savePassword($password) {
 
+  $password = htmlspecialchars($password);
 
-  //include SITE_ROOT.'lib/database.php';
-
+  $password_length = mb_strlen($password);
   $database = connectDatabase();
 
+
+
+$i18n = new i18n;
+
+
+  if($password_length < MIN_PASSWORD) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>30, 'error_message'=>$i18n->get('short_password'), 'error_field'=>'password'));
+  } else if($password_length > MAX_PASSWORD) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>$i18n->get('long_password'), 'error_field'=>'password'));
+  }
   $password_hashing = passwordHashing($password);
   $hashed_password = $password_hashing['hashed_password'];  
   $salt = $password_hashing['salt'];
   $timestamp_registered = time();
 
   $hash = hash('sha256', time().rand(0, 1000000));
-
-
-
-
-
-
-  $password_hashing = passwordHashing($password);
-  $hashed_password = $password_hashing['hashed_password'];  
-  $salt = $password_hashing['salt'];
-  $timestamp_registered = time();
-
-  $hash = hash('sha256', time().rand(0, 1000000));
-
 
 
 
 
   $restore_email = !empty($_SESSION['restore_email']) ? $_SESSION['restore_email'] : '';
-  var_dump($restore_email);                                               
-  var_dump($_SESSION);  
+ /// var_dump($restore_email);                                               
+ // var_dump($_SESSION);  
 
   $is_email_exist = $database->prepare("UPDATE `users` SET `hashed_password`=:hashed_password,`salt`=:salt WHERE `email` = :email");
   $is_email_exist->execute(array(':email' => $restore_email,
                                  ':hashed_password' => $hashed_password,
                                  ':salt' => $salt));
+  return array('is_error' => false, 'message' => $i18n->get('change_password_success'));
 
   
 
 
 }
-
+}
 
 ?>

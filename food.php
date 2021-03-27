@@ -20,6 +20,8 @@
 
 
   include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 <div class="content" style="padding-bottom:17px">
@@ -35,7 +37,7 @@
 <?php
 
   if(empty($food)) {
-    echo '<div style="text-align:center;padding:74px 0 67px;">
+    echo '<div class="" style="text-align:center;padding:74px 0 67px;">
             <div>Не найдено ни отдной записи</div>
             <div style="margin-top:7px"><a href="/menu.php?act=create_food">Создать запись</a></div>
           </div>';

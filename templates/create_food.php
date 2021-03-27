@@ -15,6 +15,8 @@ if(empty($_SESSION['user_id'])) {
 <?php
 
 include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 //include SITE_ROOT.'lib/database.php';
 /*
 include SITE_ROOT.'libs/menu.php';

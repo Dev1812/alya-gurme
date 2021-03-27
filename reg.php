@@ -23,6 +23,8 @@ if(!empty($_SESSION['user_id'])) {
 <?php
 
 include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 
@@ -60,7 +62,7 @@ include SITE_ROOT.'templates/head.php';
 
         <?php
 
-        if(isset($reg['error']['error_message']) && !empty($reg['error']['error_message'])) {
+        if(isset($reg['error']['error_message']['title']) && !empty($reg['error']['error_message']['title'])) {
 ?>
 <div class="form">
 <div class="form__title"><?php echo $reg['error']["error_message"]['title'];?></div>

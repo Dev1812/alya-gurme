@@ -23,22 +23,27 @@
   $firstname_length = mb_strlen($firstname);
   $lastname_length = mb_strlen($lastname);
 
-  if($firstname_length < MIN_FIRSTNAME) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>'error', 'error_field'=>'firstname'));
-  } else if($firstname_length > MAX_FIRSTNAME) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>'error', 'error_field'=>'firstname'));
-  } else if(!preg_match('/^[а-яА-Яёa-zA-Z]*$/u', $firstname)) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>23, 'error_message'=>'error', 'error_field'=>'firstname'));
-  }
 
+
+
+  $i18n = new i18n;
+
+  if($firstname_length < MIN_FIRSTNAME) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_firstname'), 'error_field'=>'firstname'));
+  } else if($firstname_length > MAX_FIRSTNAME) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_firstname'), 'error_field'=>'firstname'));
+  } else if(!preg_match('/^[а-яА-Яёa-zA-Z]*$/u', $firstname)) {
+    return array('is_error'=>true, 'error'=>array('error_code'=>23, 'error_message'=>$i18n->get('incorrect_firstname'), 'error_field'=>'firstname'));
+  }
 
   if($lastname_length < MIN_LASTNAME) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>'short_firstname', 'error_field'=>'firstname'));
+    return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_lastname'), 'error_field'=>'firstname'));
   } else if($lastname_length > MAX_LASTNAME) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>'long_firstname', 'error_field'=>'firstname'));
+    return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_lasttname'), 'error_field'=>'firstname'));
   } else if(!preg_match('/^[а-яА-Яёa-zA-Z]*$/u', $lastname)) {
-    return array('is_error'=>true, 'error'=>array('error_code'=>23, 'error_message'=>'incorrect_firstname', 'error_field'=>'firstname'));
+    return array('is_error'=>true, 'error'=>array('error_code'=>23, 'error_message'=>$i18n->get('incorrect_flastname'), 'error_field'=>'firstname'));
   }
+
   $link = connectDatabase();
 
 
@@ -50,7 +55,7 @@
   
      $_SESSION['first_name'] = $firstname;
      $_SESSION['last_name'] = $lastname;
-  return 'error';
+      return array('is_error'=>false, 'message'=>$i18n->get('food_success_created'));
   }
 
 

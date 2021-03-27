@@ -2,7 +2,7 @@
 <html>
 
 <?php
-  include SITE_ROOT.'template/header.php';
+  include SITE_ROOT.'templates/header.php';
 ?>
 
 <body>
@@ -11,7 +11,9 @@
 
 
 <?php
-include SITE_ROOT.'template/head.php';
+include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 
@@ -27,7 +29,7 @@ include SITE_ROOT.'template/head.php';
 </div>
 
 <?php
-  include SITE_ROOT.'template/footer.php';
+  include SITE_ROOT.'templates/footer.php';
 ?>
 
 </body>

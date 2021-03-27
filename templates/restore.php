@@ -19,6 +19,8 @@
 
 
 include SITE_ROOT.'templates/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 
@@ -60,6 +62,14 @@ include SITE_ROOT.'templates/head.php';
 </div>
 <?php
 
+        } else if(!empty($restore['messages']['title'])) {
+?>
+
+<div class="form form-success">
+<div class="form__title"><?php echo $restore['messages']['title'];?></div>
+<div class="form__description"><?php echo $restore['messages']['description'];?></div>
+</div>  
+<?php
         }
         ?>
     <div class="label">Ваш email</div>
@@ -68,7 +78,7 @@ include SITE_ROOT.'templates/head.php';
     </div>
 
     <div>
-      <input type="submit" class="button" name="restore_submit" value="Восстанововить пароль" style="padding: 7px 14px;">
+      <input type="submit" class="button" name="restore_submit" value="Восстановить пароль" style="padding: 7px 14px;">
     </div>
 
 

@@ -4,6 +4,8 @@ define('SITE_ROOT', str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']).'/');
 define('TITLE', 'Выход');
 define('SITE_NAME', 'Аля гурме');
 include SITE_ROOT.'templates/top_params.php';
+  include SITE_ROOT.'libs/i18n.php';
+  //include SITE_ROOT.'libs/i18n.php';
 
   ob_start();
 ?>

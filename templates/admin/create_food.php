@@ -27,6 +27,8 @@
 <?php
 
 include SITE_ROOT.'temlate/head.php';
+  include SITE_ROOT.'templates/gray_head.php';
+  include SITE_ROOT.'templates/sidebar.php';
 ?>
 
 <div class="content">
