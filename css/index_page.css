@@ -1,4 +1,3 @@
-
 .food{float:left;width:270px;height:314px;overflow:hidden;cursor:pointer;transition:all 0.3s ease;border-radius:7px;}
 .food:hover {box-shadow: 0 0 51px #b7b1b1;background-color: #FFF;}
 .food-photo__img{width:100%;border-radius:7px;}

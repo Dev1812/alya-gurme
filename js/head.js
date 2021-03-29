@@ -1,5 +1,4 @@
-
-  var ajax = {
+var ajax = {
   init: function() {
     var xhr;
     try {
@@ -81,22 +80,19 @@ function parseJSON(obj){
   return eval('('+obj+')');
 }
 function topMenuSearch(value) {
-if(value.length < 1) { 
-return false;
-}
-      var responsr='';  
-responsr += '<a href="/search2.php?q='+document.getElementById('dffg').value+'" target="_blank"><div class="okantovka" style="background-color:#FBFBFB">Показать все результаты</div></a>';
-  console.log(value);
+  if(value.length < 1) { 
+    return false;
+  }
+  var html='';  
+  html += '<a href="/search2.php?q='+document.getElementById('dffg').value+'" target="_blank"><div class="okantovka" style="background-color:#FBFBFB">Показать все результаты</div></a>';
   ajax.get({
     url: '/search.php?q='+value,
     data: '',
     success: function(data) {
       for(var i in data) {
-responsr += '<a href="/food.php?food_id='+data[i].id+'" target="_blank"><div class="okantovka">'+data[i].title+'</div></a>';
+        html += '<a href="/food.php?food_id='+data[i].id+'" target="_blank"><div class="okantovka">'+data[i].title+'</div></a>';
       }
-
-      document.getElementById('lol').innerHTML=responsr;
-      console.log(data);
+      document.getElementById('lol').innerHTML=html;
     }
   });
 }

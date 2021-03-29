@@ -12,7 +12,7 @@
   include SITE_ROOT.'templates/header.php';
 ?>
 <body>
-<link rel="stylesheet" type="text/css" href="/css/index.css?1">
+<link rel="stylesheet" type="text/css" href="/css/index.css?<?php echo time();?>">
 <?php
   include SITE_ROOT.'templates/head.php';
   include SITE_ROOT.'templates/gray_head.php';
@@ -48,15 +48,7 @@
 
   if($v['owner_id'] == $user_id || $user_type == 'admin') {
   echo '
-  <div class="delete_food" style="
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #000;
-    margin: 25px 14px;
-    width: 54px;
-    height: 54px;" onclick="deleteFood('.$v['id'].');event.preventDefault();"><img style="
-    margin-top: 13px;" src="/image/icon/close.png"></div>';
+  <div class="delete_food" onclick="deleteFood('.$v['id'].');event.preventDefault();"><img class="delete_food__icon" src="/image/icon/close.png"></div>';
   }
 ?>
 
@@ -90,17 +82,19 @@
 
 function deleteFood(photo_id) {
 
-  var is_admin = confirm("Удалить?");
+  var is_admin = confirm("Вы действительно хотите удалить запись?");
   if(is_admin) {
     document.getElementById('food_'+photo_id).style.display='none';
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "/testt.php?act=delete_photo&photo_id="+photo_id, true);
+    ajax.open("GET", "/ajax_delete_photo.php?act=delete_photo&photo_id="+photo_id, true);
     ajax.send();
     ajax.addEventListener("readystatechange", function() {
       if(ajax.readyState === 4 && ajax.status === 200) {
- 
+ location.reload(); 
       }
     });
+
+
   }
 }
 </script>

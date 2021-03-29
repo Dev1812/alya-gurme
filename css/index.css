@@ -1,31 +1,8 @@
-
- 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-  .food{width:100%!important;height:100%;
-    height: 487px!important;}
-  .food-photo__img{
-    height: 301px!important;}
-    .gray-head{display: none;}
-    .head-right{display: none;}
-    .wrap1 {
-    width: 100%;
-  }
-  .head-search__wrap{display: none;}
-
-.nav-logo__wrap{width:auto!important;}
-
-}
-
-
-.food{float:left;width:270px;height:417px;overflow:hidden;cursor:pointer;transition:all 0.3s ease;border-radius:7px;text-align: center;}
-.food:hover {box-shadow: 0 0 51px #b7b1b1;background-color: #FFF;}
-.food-photo__img{width:100%;border-radius:7px;
-    height: 206px;
-}
-.food-title{font-size:24px;padding:7px 0 7px;color: #607d8b;text-transform:uppercase;font-size:18px;font-weight:bold;height: 60px;overflow: hidden}
-.food-wrap{padding:24px 14px;line-height:24px;}
-.food-description{
-  max-height: 71px;
-    overflow: hidden;
-}
+.food{float:left;width:270px;height:417px;overflow:hidden;cursor:pointer;transition:all .3s ease;border-radius:7px;text-align:center}
+.food:hover{box-shadow:0 0 51px #b7b1b1;background-color:#FFF}
+.food-photo__img{width:100%;border-radius:7px;height:206px}
+.food-title{font-size:24px;padding:7px 0;color:#607d8b;text-transform:uppercase;font-size:18px;font-weight:700;height:60px;overflow:hidden}
+.food-wrap{padding:24px 14px;line-height:24px}
+.food-description{max-height:71px;overflow:hidden}
+.delete_food{position:absolute;top:0;right:0;padding:9px 11px;background:#000;cursor:pointer;margin:24px 12px 0 0}
+.delete_food__icon{margin-top:5px}
