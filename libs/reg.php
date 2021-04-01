@@ -50,17 +50,6 @@
 
 function reg($firstname, $lastname, $email, $password) {
 
-
-
-
-
-
-
-
-
-
-
-
   $firstname_length = htmlspecialchars($firstname);
   $lastname = htmlspecialchars($lastname);
   $email = htmlspecialchars($email);
@@ -72,7 +61,7 @@ function reg($firstname, $lastname, $email, $password) {
   $email_length = mb_strlen($email);
   $password_length = mb_strlen($password);
 
-  $i18n= new i18n;
+  $i18n = new i18n;
 
   if($firstname_length < MIN_FIRSTNAME) {
     return array('is_error'=>true, 'error'=>array('error_code'=>21, 'error_message'=>$i18n->get('short_firstname'), 'error_field'=>'firstname'));
@@ -108,10 +97,6 @@ function reg($firstname, $lastname, $email, $password) {
   $is_email_exist = $database->prepare("SELECT `id` FROM `users` WHERE `email` = :email");
   $is_email_exist->execute(array(':email' => $email));
   $row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC);
-
-//var_dump($row1);
-
-//var_dump($row1);
 
   if(!empty($row1['id'])) {
     return array('is_error'=>true,'error'=>array('error_code'=>32, 'error_message'=>$i18n->get('email_exist'), 'error_field'=>'email'));

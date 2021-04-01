@@ -11,7 +11,7 @@ include 'libs/user.php';
 include SITE_ROOT.'libs/database.php';
 
 if(empty($_SESSION['user_id'])) {
-  header('Location: /');
+  header('Location: /login.php');
 }
 
 $act = !empty($_GET['act']) ? $_GET['act'] : '';

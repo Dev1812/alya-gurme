@@ -23,12 +23,6 @@
 
 
 function login($email, $password) {
- // include 'lib/database.php';
-
-
-
-
-
 
   $email = htmlspecialchars($email);
   $password = htmlspecialchars($password);
@@ -36,7 +30,7 @@ function login($email, $password) {
 
   $email_length = mb_strlen($email);
   $password_length = mb_strlen($password);
-$i18n = new i18n;
+  $i18n = new i18n;
   
 
   if($email_length < MIN_EMAIL) {
@@ -56,11 +50,6 @@ $i18n = new i18n;
 
   $is_email_exist = $database->prepare("SELECT `id`, `first_name`, `last_name`, `hashed_password`, `salt`, `photo_path`, `type` FROM `users` WHERE `email` = :email");
 
-//var_dump($row1);
-
-//var_dump($row1);
-
-
 
   $is_email_exist->execute(array(':email' => $email));
   $row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC);
@@ -75,20 +64,18 @@ $i18n = new i18n;
      $_SESSION['photo_path'] = !empty($row1['photo_path']) ? $row1['photo_path'] : '/image/Pmz7l.png';//Pmz7l
      $_SESSION['user_type'] = 'admin';
        header('Location: /admin.php?act=show_menu');
-    } else{
+    } else {
 
-     $_SESSION['user_id'] = $row1['id'];
-     $_SESSION['first_name'] = $row1['first_name'];
-     $_SESSION['last_name'] = $row1['last_name'];
-     $_SESSION['photo_path'] = !empty($row1['photo_path']) ? $row1['photo_path'] : '/image/Pmz7l.png';//Pmz7l
-     $_SESSION['user_type'] = 'user';
-  header('Location: /menu.php');
-}
-} else {
-
-      return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>'Не правильноы', 'error_field'=>'password'));
-
-}
+       $_SESSION['user_id'] = $row1['id'];
+       $_SESSION['first_name'] = $row1['first_name'];
+       $_SESSION['last_name'] = $row1['last_name'];
+       $_SESSION['photo_path'] = !empty($row1['photo_path']) ? $row1['photo_path'] : '/image/Pmz7l.png';//Pmz7l
+       $_SESSION['user_type'] = 'user';
+      header('Location: /menu.php');
+    }
+  } else {
+    return array('is_error'=>true, 'error'=>array('error_code'=>31, 'error_message'=>$i18n->get('incorrect_login_or_password')));
+  }
 }
 
 

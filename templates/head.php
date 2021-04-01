@@ -1,23 +1,20 @@
-<div class="head">
+<div class="head" style="padding: 0 24px 0 0;">
  
-  <div style="width:840pxs;margin:0 auto;">
+  <div class="head-wrap">
     
-<script type="text/javascript" src="js/head.js"></script>
+<script type="text/javascript" src="js/head.js?1"></script>
 
   <div class="head-left">
-    <span href="/" class="head-link">
-<img src="/image/icon/menu.png" onClick="Head.show();" style="position: relative;
-    top: -3px;right:7px;cursor: pointer;">
-    </span>
-    <a href="/" class="head-link">
+    <span href="/" class="head-link" style="padding: 12px 12px;">
+      <img class="head-left__menu_icon" src="/image/icon/menu.png" onClick="Head.show();" style="margin-top: -14px;cursor:pointer;padding: 14px 14px;"></span>
+      <a href="/" class="head-link" style="    padding: 10px 22px 5px 1px;">
 
-      <img src="image/icon/favicon.ico" style="position: relative;right:7px;
-    top: 0px;">
-      <span style="position: relative;top:-5px">АЛЯ ГУРМЕ</span>
+      <img class="head-left__logo" src="image/icon/favicon.ico" style="margin-top: 5px;">
+      <span class="head-left__site_name" style="top: -2px;left: 9px;position: relative;">АЛЯ ГУРМЕ</span>
     </a>
   </div>
 
-  <div class="head-left head-search__wrap" style="width:190px;margin-left:14px;">
+  <div class="head-left head-search__wrap" style="margin-left: 24px;">
     <FORM action="search2.php">
       
     <input type="text" name="" onClick="document.getElementById('lol').style.display='block';document.getElementById('lol2xp').style.display='block';" class="text_field search_field" style="position: relative;z-index:9999;" id="dffg" placeholder="Поиск" onkeyup="topMenuSearch(this.value);">

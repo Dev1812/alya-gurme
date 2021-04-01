@@ -12,8 +12,8 @@ function restore($email) {
   $email = htmlspecialchars($email);
   $email_length = mb_strlen($email);
 
-
- $mail = new Mail;
+  
+  $mail = new Mail;
   if($email_length < MIN_EMAIL) {
     return array('is_error'=>true, 'error'=>array('error_code'=>27, 'error_message'=>$i18n->get('short_email'), 'error_field'=>'email'));
   } else if($email_length > MAX_EMAIL) {
@@ -24,20 +24,14 @@ function restore($email) {
 
   $database = connectDatabase();
 
-
-
-
   $is_email_exist = $database->prepare("SELECT `id` FROM `users` WHERE `email` = :email");
   $is_email_exist->execute(array(':email' => $email));
   $row2 = $is_email_exist->fetch(PDO::FETCH_ASSOC);
 
-  if(empty($row2['id'])) 
-  {
+  if(empty($row2['id'])) {
     return array('is_error'=>true, 'error'=>array('error_code'=>29, 'error_message'=>$i18n->get('not_auth'), 'error_field'=>'email'));
 
   }
-
-
 
 
   $is_email_exist = $database->prepare("SELECT `id`, `timestamp_created` FROM `restore` WHERE `email` = :email");
@@ -45,21 +39,18 @@ function restore($email) {
   $row1 = $is_email_exist->fetch(PDO::FETCH_ASSOC);
 
 
-
   if(!empty($row1['id'])) {
-  //var_dump('ya');
 
     $hash = hash('sha512', time().rand()); 
-  $is_email_exist = $database->prepare("UPDATE `restore` SET `hash`=:hash WHERE `email` = :email");
+    $is_email_exist = $database->prepare("UPDATE `restore` SET `hash`=:hash WHERE `email` = :email");
 
-  $is_email_exist->execute(array(':hash' =>  $hash,
-                                 ':email' => $email));
+    $is_email_exist->execute(array(':hash' =>  $hash,
+                                   ':email' => $email));
 
-
-  $mail = new Mail("no-reply@mysite.ru"); 
-        $mail->setFromName("Иван Иванов"); 
-       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://sgtu-cups/restore.php?act=email_check&hash='.$hash
-        .'"></a>')) {
+    $mail = new Mail("mail.digitalwind9818.000webhostapp.com/"); 
+    $mail->setFromName("Аля Гурме"); 
+    if ($mail->send($email, "Восстановление пароля", 'Здравствуйте, для восстановления пароля перейдите по ссылке:
+      <br /><b>письма <b><a herf="http://digitalwind9818.000webhostapp.com/restore.php?act=email_check&hash='.$hash.'"></a></b>')) {
 
     return array('is_error'=>false, 'messages' => array('title' =>'Успешно выполнено', 'description'=>'Пожалуйста, проверьте Ваш email'));
 
@@ -91,7 +82,7 @@ function restore($email) {
 
   $mail = new Mail("no-reply@mysite.ru"); 
         $mail->setFromName("Иван Иванов"); 
-       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://sgtu-cups/restore.php?act=email_check&hash='.$hash
+       if ($mail->send("abc@mail.ru", "Тестирование", 'Тестирование<br /><b>письма<b> <a herf="http://digitalwind9818.000webhostapp.com/restore.php?act=email_check&hash='.$hash
         .'"></a>')) {
 
   $_SESSION['restore_email'] = $email;

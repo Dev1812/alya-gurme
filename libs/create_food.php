@@ -17,9 +17,6 @@ function createFood() {
     return array('is_error'=>true, 'error'=>array('error_code'=>22, 'error_message'=>$i18n->get('long_description')));
   }
 
-
-
-
   $link = connectDatabase();
 
   $sql = "INSERT INTO `food`(`id`,

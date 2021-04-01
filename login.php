@@ -67,6 +67,8 @@ include SITE_ROOT.'templates/head.php';
   
 
         <?php
+
+        
         if(isset($login['error']['error_message']) && !empty($login['error']['error_message'])) {
 ?>
 <div class="form">

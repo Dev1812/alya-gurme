@@ -53,7 +53,12 @@ include SITE_ROOT.'templates/head.php';
 <FORM action="/restore.php" method="GET">
   
 
+
+
+
         <?php
+
+        var_dump($restore);
         if(isset($restore['error']['error_message']) && !empty($restore['error']['error_message'])) {
 ?>
 <div class="form">

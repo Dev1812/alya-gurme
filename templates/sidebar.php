@@ -48,9 +48,6 @@ if(!empty($_SESSION['user_id'])) {
 
 
 
-        <a class="sidebar-content__line_wrap" href="/setting.php"><div class="sidebar-content__line">Настройки</div></a>
-
-
 
 
 

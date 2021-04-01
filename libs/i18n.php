@@ -1,9 +1,4 @@
-<?php 
-/**
- * @date 28 July 2018 20:25
- *
- * 
- */
+<?php
 class i18n{
   /**
    * @example array('lang' => array('key' => 'value'))
